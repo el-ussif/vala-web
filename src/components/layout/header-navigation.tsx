@@ -1,48 +1,97 @@
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 import {CallActionButton} from "@/components/home/call-action-button";
 
 export const HeaderNavigation = () => {
     const navLinks = [
-        {
-            label: "Product",
-            link: "#",
-            isExternal: false
-        },
-        {
-            label: "Feautres",
-            link: "#",
-            isExternal: false
-        },
-        {
-            label: "Recruter",
-            link: "#",
-            isExternal: false
-        },
-    ]
+        { label: 'Product', link: '#', isExternal: false },
+        { label: 'Features', link: '#', isExternal: false },
+        { label: 'Recruter', link: '#', isExternal: false },
+    ];
+
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <>
             <header className="flex justify-between items-center py-6">
                 <div className="flex items-center space-x-4 md:space-x-8">
-                    <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">
-                        Vala
-                    </h1>
+                    <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">Vala</h1>
+
+                    {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center mt-3 space-x-6">
                         {navLinks.map((item, key) => (
                             <Link
                                 key={key}
                                 href={item.link}
-                                target={item?.isExternal ? '_blank' : undefined}
+                                target={item.isExternal ? '_blank' : undefined}
                                 className="text-white/90 hover:underline hover:underline-offset-4 hover:text-white transition-all duration-300"
                             >
-                                {item?.label}
+                                {item.label}
                             </Link>
                         ))}
                     </nav>
                 </div>
 
-                <CallActionButton/>
+                {/* Desktop CTA */}
+                <div className="hidden md:block">
+                    <CallActionButton />
+                </div>
+
+                {/* Mobile: Menu toggle button */}
+                <div className="md:hidden flex items-center space-x-2">
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setIsOpen(!isOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {isOpen ? <X className="text-white" /> : <Menu className="text-white" />}
+                    </Button>
+                </div>
             </header>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ y: -10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -10, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="md:hidden fixed top-0 left-0 w-full h-full z-50 backdrop-blur-md bg-black/60 p-6 flex flex-col gap-6"
+                    >
+                        <div className="flex justify-between items-center">
+                            <h1 className="font-genos text-white text-3xl font-bold">Vala</h1>
+                            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                                <X className="text-white" />
+                            </Button>
+                        </div>
+
+                        <nav className="flex flex-col gap-4 mt-6">
+                            {navLinks.map((item, key) => (
+                                <Link
+                                    key={key}
+                                    href={item.link}
+                                    onClick={() => setIsOpen(false)}
+                                    target={item.isExternal ? '_blank' : undefined}
+                                    className="text-white text-lg hover:underline"
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </nav>
+
+                        <div className="mt-auto">
+                            <CallActionButton />
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
-    )
-}
+    );
+};
