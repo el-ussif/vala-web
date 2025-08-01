@@ -1,5 +1,4 @@
 import PillBadge from "@/components/custom-ui/pill-badge";
-import {Button} from "@/components/ui/button";
 import {CallActionButton} from "@/components/home/call-action-button";
 
 export const MarketingBanner = () => {
@@ -7,12 +6,12 @@ export const MarketingBanner = () => {
     return (
         <div className="w-full flex items-center justify-center overflow-hidden">
             <div className="container w-full  px-2 md:px-0">
-                <div className="mt-[105px] px-4 md:px-0 w-full">
+                <div className="mt-0 md:mt-[105px] px-4 md:px-0 w-full">
                     <img className="w-full mx-auto md:w-[690px]" src="/images/ai-agent.png" alt=""/>
                 </div>
 
                 <div
-                    className="mt-[128px] mx-auto max-w-[830px] text-center justify-center flex flex-wrap gap-x-1 gap-y-2 text-lg leading-relaxed">
+                    className="mt-20 md:mt-[128px] mx-auto max-w-[830px] text-center justify-center flex flex-wrap gap-x-1 gap-y-2 text-lg leading-relaxed">
                     <span className="text-2xl">Prepare for your</span>
                     <PillBadge
                         bgColor="bg-purple-1/[.36]"
