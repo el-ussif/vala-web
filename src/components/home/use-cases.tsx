@@ -5,7 +5,7 @@ export const UseCases = () => {
 
     return (
         <>
-            <div className="w-full container mt-12 md:mt-24 mx-auto">
+            <div className="w-full container px-2 mt-12 md:mt-24 mx-auto">
                 <div className="max-w-[708px] mx-auto mt-32  space-y-20">
                     <div className="">
                         <h2 className="font-bold text-4xl md:text-6xl text-center">

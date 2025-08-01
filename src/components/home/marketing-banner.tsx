@@ -12,7 +12,7 @@ export const MarketingBanner = () => {
                 </div>
 
                 <div
-                    className="mt-[128px]  mx-auto max-w-[830px] text-center justify-center flex flex-wrap gap-x-1 gap-y-2 text-lg leading-relaxed">
+                    className="mt-[128px] mx-auto max-w-[830px] text-center justify-center flex flex-wrap gap-x-1 gap-y-2 text-lg leading-relaxed">
                     <span className="text-2xl">Prepare for your</span>
                     <PillBadge
                         bgColor="bg-purple-1/[.36]"
