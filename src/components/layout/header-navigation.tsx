@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import {useState} from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import {CallActionButton} from "@/components/home/call-action-button";
+import {Menu, X} from 'lucide-react';
+import {AnimatePresence, motion, useScroll, useTransform} from 'framer-motion';
+import {Button} from '@/components/ui/button';
+import {CallActionButton} from '@/components/home/call-action-button';
 
 export const HeaderNavigation = () => {
     const navLinks = [
@@ -15,45 +15,58 @@ export const HeaderNavigation = () => {
     ];
 
     const [isOpen, setIsOpen] = useState(false);
+    const { scrollY } = useScroll();
+
+    const background = useTransform(scrollY, [0, 100], ['rgba(0,0,0,0)', 'rgba(0,0,0,0.6)']);
+    const blur = useTransform(scrollY, [0, 100], ['0px', '12px']);
 
     return (
         <>
-            <header className="flex justify-between items-center py-6">
-                <div className="flex items-center space-x-4 md:space-x-8">
-                    <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">Vala</h1>
+            <motion.div
+                className="fixed top-0 left-0 w-full z-50 px-4 md:px-8"
+                style={{
+                    background,
+                    backdropFilter: blur,
+                    WebkitBackdropFilter: blur,
+                    transition: 'background 0.3s ease, backdrop-filter 0.3s ease',
+                }}
+            >
+                <header className="flex justify-between items-center py-4 max-w-7xl mx-auto">
+                    <div className="flex items-center space-x-4 md:space-x-8">
+                        <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">
+                            Vala
+                        </h1>
 
-                    {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center mt-3 space-x-6">
-                        {navLinks.map((item, key) => (
-                            <Link
-                                key={key}
-                                href={item.link}
-                                target={item.isExternal ? '_blank' : undefined}
-                                className="text-white/90 hover:underline hover:underline-offset-4 hover:text-white transition-all duration-300"
-                            >
-                                {item.label}
-                            </Link>
-                        ))}
-                    </nav>
-                </div>
+                        <nav className="hidden md:flex items-center mt-2 space-x-6">
+                            {navLinks.map((item, key) => (
+                                <Link
+                                    key={key}
+                                    href={item.link}
+                                    target={item.isExternal ? '_blank' : undefined}
+                                    className="text-white/90 hover:underline hover:underline-offset-4 hover:text-white transition-all duration-300"
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </nav>
+                    </div>
 
-                {/* Desktop CTA */}
-                <div className="hidden md:block">
-                    <CallActionButton />
-                </div>
+                    <div className="hidden md:block">
+                        <CallActionButton />
+                    </div>
 
-                {/* Mobile: Menu toggle button */}
-                <div className="md:hidden flex items-center space-x-2">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => setIsOpen(!isOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        {isOpen ? <X className="text-white" /> : <Menu className="text-white" />}
-                    </Button>
-                </div>
-            </header>
+                    <div className="md:hidden flex items-center space-x-2">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => setIsOpen(!isOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {isOpen ? <X className="text-white" /> : <Menu className="text-white" />}
+                        </Button>
+                    </div>
+                </header>
+            </motion.div>
 
             {/* Mobile Menu */}
             <AnimatePresence>
