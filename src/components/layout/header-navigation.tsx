@@ -33,9 +33,11 @@ export const HeaderNavigation = () => {
             >
                 <header className="flex justify-between items-center py-4 container mx-auto">
                     <div className="flex items-center space-x-4 md:space-x-8">
-                        <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">
-                            Vala
-                        </h1>
+                        <Link href="/">
+                            <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">
+                                Vala
+                            </h1>
+                        </Link>
 
                         <nav className="hidden md:flex items-center mt-2 space-x-6">
                             {navLinks.map((item, key) => (
@@ -43,7 +45,7 @@ export const HeaderNavigation = () => {
                                     key={key}
                                     href={item.link}
                                     target={item.isExternal ? '_blank' : undefined}
-                                    className="text-white/90 hover:underline hover:underline-offset-4 hover:text-white transition-all duration-300"
+                                    className="text-white hover:text-primary transition-all duration-300"
                                 >
                                     {item.label}
                                 </Link>

@@ -10,7 +10,7 @@ export const CallActionButton = ({label, link}: CallActionButtonProps) => {
 
     return (
         <Link href={link??"#"}>
-            <Button>
+            <Button className="font-semibold">
                 {label??"Join Waitlist"}
             </Button>
         </Link>

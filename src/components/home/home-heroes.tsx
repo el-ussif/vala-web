@@ -38,7 +38,7 @@ export const HomeHeroes = () => {
 
             {/* Dark overlay for better text contrast */}
             <div className="absolute h-screen w-full inset-0 z-2">
-                <svg className="h-full xl:h-auto" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className="h-full 2xl:h-auto" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="1440" height="900" fill="url(#paint0_linear_1_11)"/>
                     <rect width="1440" height="900" fill="url(#paint1_linear_1_11)"/>
                     <rect width="1440" height="900" fill="url(#paint2_linear_1_11)"/>
