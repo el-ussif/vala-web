@@ -1,5 +1,5 @@
 import {HeaderNavigation} from "@/components/layout/header-navigation";
-import {CallActionButton} from "@/components/home/call-action-button";
+import {TallyButton} from "@/components/home/tally-button";
 import {motion} from "framer-motion";
 
 export const HomeHeroes = () => {
@@ -95,7 +95,7 @@ export const HomeHeroes = () => {
                             whileTap={{ scale: 0.95 }}
                             className="flex  items-center"
                         >
-                            <CallActionButton/>
+                            <TallyButton/>
                         </motion.div>
                     </div>
                 </motion.div>

@@ -1,4 +1,4 @@
-import {CallActionButton} from "@/components/home/call-action-button";
+import {TallyButton} from "@/components/home/tally-button";
 import {motion} from "framer-motion";
 import {useScrollAnimation} from "@/hooks/useScrollAnimation";
 
@@ -87,7 +87,7 @@ export const UseCases = () => {
                             whileTap={{ scale: 0.95 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <CallActionButton/>
+                            <TallyButton/>
                         </motion.div>
                     </motion.div>
                 </div>

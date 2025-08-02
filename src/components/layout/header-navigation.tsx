@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {Menu, X} from 'lucide-react';
 import {AnimatePresence, motion, useScroll, useTransform} from 'framer-motion';
 import {Button} from '@/components/ui/button';
-import {CallActionButton} from '@/components/home/call-action-button';
+import {TallyButton} from '@/components/home/tally-button';
 import {Env} from "@/constants/env";
 import {SmoothScrollLink} from '@/components/ui/smooth-scroll-link';
 
@@ -70,7 +70,7 @@ export const HeaderNavigation = () => {
                     </div>
 
                     <div className="hidden md:block">
-                        <CallActionButton />
+                        <TallyButton />
                     </div>
 
                     <div className="md:hidden flex items-center space-x-2">
@@ -129,7 +129,7 @@ export const HeaderNavigation = () => {
                         </nav>
 
                         <div className="mt-auto">
-                            <CallActionButton />
+                            <TallyButton />
                         </div>
                     </motion.div>
                 )}

@@ -1,5 +1,5 @@
 import PillBadge from "@/components/custom-ui/pill-badge";
-import {CallActionButton} from "@/components/home/call-action-button";
+import {TallyButton} from "@/components/home/tally-button";
 import type {Variants} from 'framer-motion';
 import {motion} from "framer-motion";
 import {useScrollAnimation} from "@/hooks/useScrollAnimation";
@@ -203,7 +203,7 @@ export const MarketingBanner = () => {
                         whileTap={{ scale: 0.95 }}
                         transition={{ duration: 0.2 }}
                     >
-                        <CallActionButton/>
+                        <TallyButton/>
                     </motion.div>
                 </motion.div>
             </div>

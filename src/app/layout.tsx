@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import Script from 'next/script'
 import {Geist, Geist_Mono, Genos, Inter} from "next/font/google";
 import "@/styles/globals.css";
 import {ScrollToTop} from "@/components/ui/scroll-to-top";
@@ -63,13 +64,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+      <html lang="en">
+      <head>
+          <Script
+              src="https://tally.so/widgets/embed.js"
+              strategy="afterInteractive"
+              async
+          />
+      </head>
       <body
-        className={`font-inter ${inter.variable} ${genos.variable} ${geistMono.variable} ${geistSans.variable} antialiased`}
+          className={`font-inter ${inter.variable} ${genos.variable} ${geistMono.variable} ${geistSans.variable} antialiased`}
       >
-        {children}
-        <ScrollToTop />
+      {children}
+      <ScrollToTop/>
       </body>
-    </html>
+      </html>
   );
 }
