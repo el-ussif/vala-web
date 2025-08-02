@@ -1,29 +1,8 @@
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
 import {HeaderNavigation} from "@/components/layout/header-navigation";
 import {CallActionButton} from "@/components/home/call-action-button";
-import { motion } from "framer-motion";
-import { useScrollAnimation, fadeInUp, fadeInDown, slideInFromBottom } from "@/hooks/useScrollAnimation";
+import {motion} from "framer-motion";
 
 export const HomeHeroes = () => {
-    const navLinks = [
-        {
-            label: "Product",
-            link: "#",
-            isExternal: false
-        },
-        {
-            label: "Feautres",
-            link: "#",
-            isExternal: false
-        },
-        {
-            label: "Recruter",
-            link: "#",
-            isExternal: false
-        },
-    ]
-
     return (
         <div className="w-full relative h-screen overflow-hidden">
             {/* Video Background */}
@@ -42,13 +21,13 @@ export const HomeHeroes = () => {
             </motion.video>
 
             {/* Dark overlay for better text contrast */}
-            <motion.div 
+            <motion.div
                 className="absolute h-screen w-full inset-0 z-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.5, delay: 0.5 }}
             >
-                <svg className="h-full 2xl:h-auto" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className="h-full 2xl:h-auto 2xl:w-auto" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="1440" height="900" fill="url(#paint0_linear_1_11)"/>
                     <rect width="1440" height="900" fill="url(#paint1_linear_1_11)"/>
                     <rect width="1440" height="900" fill="url(#paint2_linear_1_11)"/>
@@ -85,14 +64,14 @@ export const HomeHeroes = () => {
                 </motion.div>
 
                 {/* Hero Content */}
-                <motion.div 
+                <motion.div
                     className="flex-1 flex items-end max-w-[775px] pb-[125px] justify-start"
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <div className="text-white space-y-6">
-                        <motion.h2 
+                        <motion.h2
                             className="text-4xl md: text-4xl md:text-6xl font-semibold"
                             initial={{ y: 50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
@@ -100,7 +79,7 @@ export const HomeHeroes = () => {
                         >
                             Meet Vala. Your private AI guide for military life.
                         </motion.h2>
-                        <motion.p 
+                        <motion.p
                             className="text-xl md:text-2xl text-white/60 mx-auto"
                             initial={{ y: 30, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
@@ -121,7 +100,7 @@ export const HomeHeroes = () => {
                 </motion.div>
 
                 {/* Scroll indicator */}
-                <motion.div 
+                <motion.div
                     className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

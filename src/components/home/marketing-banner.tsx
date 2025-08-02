@@ -2,13 +2,14 @@ import PillBadge from "@/components/custom-ui/pill-badge";
 import {CallActionButton} from "@/components/home/call-action-button";
 import { motion } from "framer-motion";
 import { useScrollAnimation, fadeInUp, scaleIn, staggerContainer } from "@/hooks/useScrollAnimation";
+import type { Variants } from 'framer-motion';
 
 export const MarketingBanner = () => {
     const { ref: imageRef, isInView: imageInView } = useScrollAnimation({ threshold: 200 });
     const { ref: textRef, isInView: textInView } = useScrollAnimation({ threshold: 150 });
     const { ref: buttonRef, isInView: buttonInView } = useScrollAnimation({ threshold: 100 });
 
-    const textVariants = {
+    const textVariants: Variants = {
         hidden: { opacity: 0, y: 30 },
         visible: {
             opacity: 1,
@@ -21,7 +22,7 @@ export const MarketingBanner = () => {
         }
     };
 
-    const pillVariants = {
+    const pillVariants: Variants = {
         hidden: { opacity: 0, scale: 0.8, y: 20 },
         visible: {
             opacity: 1,
@@ -29,7 +30,7 @@ export const MarketingBanner = () => {
             y: 0,
             transition: {
                 duration: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                ease: [0.25, 0.46, 0.45, 0.94] as const
             }
         }
     };

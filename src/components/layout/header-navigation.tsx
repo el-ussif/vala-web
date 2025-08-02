@@ -23,7 +23,7 @@ export const HeaderNavigation = () => {
     return (
         <>
             <motion.div
-                className="fixed top-0 left-0 w-full z-50 px-4 md:px-0"
+                className="fixed top-0 left-0 w-full z-50"
                 style={{
                     background,
                     backdropFilter: blur,
@@ -31,7 +31,7 @@ export const HeaderNavigation = () => {
                     transition: 'background 0.3s ease, backdrop-filter 0.3s ease',
                 }}
             >
-                <header className="flex justify-between items-center py-4 container mx-auto">
+                <header className="flex justify-between items-center py-4 px-0 px-4 container mx-auto">
                     <div className="flex items-center space-x-4 md:space-x-8">
                         <Link href="/">
                             <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">
