@@ -1,6 +1,11 @@
+"use client"
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useScrollAnimation, fadeInUp, staggerContainer } from "@/hooks/useScrollAnimation";
 
 export const Footer = () => {
+    const { ref: footerRef, isInView: footerInView } = useScrollAnimation({ threshold: 100 });
+
     const FOOTER_ITEMS = [
         {
             title: "Social",
@@ -20,43 +25,104 @@ export const Footer = () => {
                 },
             ],
         },
-
     ];
-    return (
-        <div className="bg-white w-full text-gray-1 mt-24 w-full">
-            <footer className="container px-4 xl:px-0 mx-auto pt-8 md:pt-16 space-y-[40px]">
-                <section className="flex justify-between items-start flex-col lg:flex-row gap-y-10">
-                    <Link
-                        href={"/"}
-                        className="flex items-center justify-start w-full lg:w-fit"
-                    >
-                        <h1 className="font-genos  text-3xl md:text-[48px] font-bold">
-                            Vala
-                        </h1>
-                    </Link>
 
-                    <div className="grid grid-cols-2 md:grid-cols-2 gap-8 pt-4 w-full md:min-w-[600px] lg:w-[35%]">
-                        {FOOTER_ITEMS.map((item) => (
-                            <div key={item.title} className="md:w-28">
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5,
+                ease: [0.25, 0.46, 0.45, 0.94]
+            }
+        }
+    };
+
+    return (
+        <motion.div
+            ref={footerRef}
+            className="bg-white w-full text-gray-1 mt-24 w-full"
+            initial={{ opacity: 0, y: 50 }}
+            animate={footerInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+            <footer className="container px-4 xl:px-0 mx-auto pt-8 md:pt-16 space-y-[40px]">
+                <motion.section
+                    className="flex justify-between items-start flex-col lg:flex-row gap-y-10"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={footerInView ? "visible" : "hidden"}
+                >
+                    <motion.div variants={itemVariants}>
+                        <Link
+                            href={"/"}
+                            className="flex items-center justify-start w-full lg:w-fit"
+                        >
+                            <motion.h1
+                                className="font-genos text-3xl md:text-[48px] font-bold"
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                Vala
+                            </motion.h1>
+                        </Link>
+                    </motion.div>
+
+                    <motion.div
+                        className="grid grid-cols-2 md:grid-cols-2 gap-8 pt-4 w-full md:min-w-[600px] lg:w-[35%]"
+                        variants={containerVariants}
+                    >
+                        {FOOTER_ITEMS.map((item, index) => (
+                            <motion.div
+                                key={item.title}
+                                className="md:w-28"
+                                variants={itemVariants}
+                                initial="hidden"
+                                animate={footerInView ? "visible" : "hidden"}
+                                transition={{ delay: index * 0.1 }}
+                            >
                                 <h3 className="text-sm font-bold mb-4">{item.title}</h3>
                                 <ul className="space-y-[8px]">
-                                    {item.items.map((li) => (
-                                        <li key={li.title}>
+                                    {item.items.map((li, liIndex) => (
+                                        <motion.li
+                                            key={li.title}
+                                            variants={itemVariants}
+                                            initial="hidden"
+                                            animate={footerInView ? "visible" : "hidden"}
+                                            transition={{ delay: (index * 0.1) + (liIndex * 0.05) }}
+                                        >
                                             <Link
                                                 href={li.href}
                                                 className="hover:underline whitespace-nowrap text-sm"
                                             >
                                                 {li.title}
                                             </Link>
-                                        </li>
+                                        </motion.li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
-                </section>
+                    </motion.div>
+                </motion.section>
 
-                <div className="w-full">
+                <motion.div
+                    className="w-full"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={footerInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                >
                     <svg viewBox="0 0 1214 338" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -65,19 +131,24 @@ export const Footer = () => {
                         <defs>
                             <linearGradient id="paint0_linear_1_221" x1="615" y1="-29.2017" x2="615" y2="301.798"
                                             gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#999999"/>
-                                <stop offset="1" stop-color="white"/>
+                                <stop stopColor="#999999"/>
+                                <stop offset="1" stopColor="white"/>
                             </linearGradient>
                         </defs>
                     </svg>
-                </div>
+                </motion.div>
 
-                <section className="text-center py-4 -mt-5 md:-mt-10">
+                <motion.section
+                    className="text-center py-4 -mt-5 md:-mt-10"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={footerInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                >
                     <small className="text-sm text-[#333333]">
                         Copyright &copy; {new Date().getFullYear()} &nbsp; Vala Labs
                     </small>
-                </section>
+                </motion.section>
             </footer>
-        </div>
+        </motion.div>
     )
 }

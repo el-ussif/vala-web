@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import {Inter, Genos, Geist, Geist_Mono} from "next/font/google";
 import "@/styles/globals.css";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -66,6 +67,7 @@ export default function RootLayout({
       <body
         className={`font-inter ${inter.variable} ${genos.variable} ${geistMono.variable} ${geistSans.variable} antialiased`}
       >
+        <ScrollProgress />
         {children}
       </body>
     </html>

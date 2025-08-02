@@ -1,3 +1,4 @@
+"use client"
 import {HomeHeroes} from "@/components/home/home-heroes";
 import {MarketingBanner} from "@/components/home/marketing-banner";
 import {Features} from "@/components/home/features";
