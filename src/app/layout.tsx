@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import {Geist, Geist_Mono, Genos, Inter} from "next/font/google";
 import "@/styles/globals.css";
+import {ScrollToTop} from "@/components/ui/scroll-to-top";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -67,6 +68,7 @@ export default function RootLayout({
         className={`font-inter ${inter.variable} ${genos.variable} ${geistMono.variable} ${geistSans.variable} antialiased`}
       >
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );

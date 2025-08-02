@@ -77,7 +77,34 @@ Hook pour détecter la direction du scroll.
 - `'down'` : Scroll vers le bas
 - `null` : Pas de scroll
 
-### 4. **ScrollProgress** (`src/components/ui/scroll-progress.tsx`)
+### 4. **Hook useSmoothScroll** (`src/hooks/useSmoothScroll.ts`)
+Hook pour gérer le scroll smooth de manière avancée.
+
+**Fonctionnalités :**
+- Scroll vers un élément avec options personnalisées
+- Scroll vers le haut de la page
+- Easing functions personnalisées
+- Compensation automatique pour le header fixe
+
+### 5. **SmoothScrollLink** (`src/components/ui/smooth-scroll-link.tsx`)
+Composant de lien avec scroll smooth pour les ancres.
+
+**Fonctionnalités :**
+- Navigation smooth vers les ancres
+- Gestion des liens externes
+- Options de scroll personnalisables
+- Support pour les liens mailto et tel
+
+### 6. **ScrollToTop** (`src/components/ui/scroll-to-top.tsx`)
+Bouton "Retour en haut" avec animations.
+
+**Fonctionnalités :**
+- Apparition/disparition animée selon le scroll
+- Scroll smooth vers le haut
+- Animations hover et tap
+- Seuil de visibilité configurable
+
+### 7. **ScrollProgress** (`src/components/ui/scroll-progress.tsx`)
 Barre de progression animée en haut de la page qui suit le scroll.
 
 **Caractéristiques :**
@@ -85,7 +112,7 @@ Barre de progression animée en haut de la page qui suit le scroll.
 - Gradient de couleur cohérent avec le design
 - Position fixe en haut de l'écran
 
-### 5. **AnimatedText** (`src/components/ui/animated-text.tsx`)
+### 8. **AnimatedText** (`src/components/ui/animated-text.tsx`)
 Composant pour animer le texte avec différents effets.
 
 **Types d'animation :**
@@ -93,7 +120,7 @@ Composant pour animer le texte avec différents effets.
 - `character` : Animation caractère par caractère
 - `line` : Animation de ligne complète
 
-### 6. **ParallaxSection & ParallaxImage** (`src/components/ui/parallax-section.tsx`)
+### 9. **ParallaxSection & ParallaxImage** (`src/components/ui/parallax-section.tsx`)
 Composants pour créer des effets de parallaxe.
 
 **Fonctionnalités :**
@@ -185,6 +212,65 @@ const { ref, isInView } = useScrollAnimation({
 - ✅ Sortie du viewport : Élément revient à l'état initial
 - ✅ Ré-entrée dans le viewport : Animation re-déclenchée
 
+## 🚀 Navigation Smooth
+
+### **Nouvelles fonctionnalités :**
+
+#### **1. Scroll Smooth Global**
+- ✅ CSS `scroll-behavior: smooth` activé
+- ✅ `scroll-padding-top` pour compenser le header fixe
+- ✅ Fallback pour les navigateurs non-supportés
+
+#### **2. SmoothScrollLink**
+Composant intelligent pour la navigation vers les ancres :
+
+```tsx
+<SmoothScrollLink 
+    href="/#product"
+    scrollOptions={{
+        duration: 800,
+        easing: 'easeInOut',
+        offset: 100
+    }}
+>
+    Product
+</SmoothScrollLink>
+```
+
+**Fonctionnalités :**
+- ✅ Navigation smooth vers les ancres
+- ✅ Gestion automatique des liens externes
+- ✅ Options de scroll personnalisables
+- ✅ Support pour mailto et tel
+
+#### **3. Hook useSmoothScroll**
+Hook avancé pour le scroll programmatique :
+
+```tsx
+const { scrollToElement, scrollToTop } = useSmoothScroll();
+
+// Scroll vers un élément
+scrollToElement('product', {
+    duration: 800,
+    easing: 'easeInOut',
+    offset: 100
+});
+
+// Scroll vers le haut
+scrollToTop({
+    duration: 600,
+    easing: 'easeOut'
+});
+```
+
+#### **4. Bouton ScrollToTop**
+Bouton animé pour retourner en haut de page :
+
+- ✅ Apparition/disparition selon le scroll
+- ✅ Animations hover et tap
+- ✅ Scroll smooth vers le haut
+- ✅ Seuil configurable
+
 ## 📱 Responsive Design
 
 Toutes les animations sont optimisées pour :
@@ -199,6 +285,7 @@ Toutes les animations sont optimisées pour :
 - `will-change` automatique via Framer Motion
 - Animations répétées optimisées
 - Lazy loading des animations avec `useInView`
+- Scroll smooth optimisé avec `requestAnimationFrame`
 
 ### **Bonnes pratiques**
 - Animations non-bloquantes
@@ -218,6 +305,7 @@ Les animations peuvent être facilement modifiées en ajustant :
 - Les variantes dans `useScrollAnimation.ts`
 - Les durées et délais dans chaque composant
 - Les effets de hover dans les composants UI
+- Les options de scroll smooth
 
 ## 🚀 Utilisation
 
@@ -262,6 +350,41 @@ const MyComponent = () => {
 };
 ```
 
+### **Navigation smooth**
+```tsx
+import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
+
+<SmoothScrollLink 
+    href="/#section"
+    scrollOptions={{
+        duration: 800,
+        easing: 'easeInOut',
+        offset: 100
+    }}
+>
+    Aller à la section
+</SmoothScrollLink>
+```
+
+### **Scroll programmatique**
+```tsx
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+
+const MyComponent = () => {
+    const { scrollToElement } = useSmoothScroll();
+    
+    const handleClick = () => {
+        scrollToElement('target-section', {
+            duration: 800,
+            easing: 'easeInOut',
+            offset: 100
+        });
+    };
+    
+    return <button onClick={handleClick}>Scroll vers la section</button>;
+};
+```
+
 ### **Animation de texte**
 ```tsx
 import { AnimatedText } from '@/components/ui/animated-text';
@@ -294,5 +417,8 @@ La landing page offre maintenant une expérience utilisateur premium avec :
 - ✅ Accessibilité respectée
 - ✅ Types TypeScript corrigés
 - ✅ Animations répétées au scroll
+- ✅ Navigation smooth vers les ancres
+- ✅ Bouton "Retour en haut" animé
+- ✅ Scroll progressif en haut de page
 
-Toutes les animations contribuent à créer une expérience immersive qui guide naturellement l'utilisateur à travers le contenu de la landing page, avec des animations qui se déclenchent à chaque interaction de scroll. 
+Toutes les animations contribuent à créer une expérience immersive qui guide naturellement l'utilisateur à travers le contenu de la landing page, avec des animations qui se déclenchent à chaque interaction de scroll et une navigation fluide entre les sections. 

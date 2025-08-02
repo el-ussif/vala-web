@@ -7,6 +7,7 @@ import {AnimatePresence, motion, useScroll, useTransform} from 'framer-motion';
 import {Button} from '@/components/ui/button';
 import {CallActionButton} from '@/components/home/call-action-button';
 import {Env} from "@/constants/env";
+import {SmoothScrollLink} from '@/components/ui/smooth-scroll-link';
 
 export const HeaderNavigation = () => {
     const navLinks = [
@@ -46,14 +47,24 @@ export const HeaderNavigation = () => {
 
                         <nav className="hidden md:flex items-center mt-2 space-x-13">
                             {navLinks.map((item, key) => (
-                                <Link
-                                    key={key}
-                                    href={item.link}
-                                    target={item.isExternal ? '_blank' : undefined}
-                                    className="text-white hover:text-primary transition-all duration-300"
-                                >
-                                    {item.label}
-                                </Link>
+                                item.isExternal ? (
+                                    <Link
+                                        key={key}
+                                        href={item.link}
+                                        target="_blank"
+                                        className="text-white hover:text-primary transition-all duration-300"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ) : (
+                                    <SmoothScrollLink
+                                        key={key}
+                                        href={item.link}
+                                        className="text-white hover:text-primary transition-all duration-300"
+                                    >
+                                        {item.label}
+                                    </SmoothScrollLink>
+                                )
                             ))}
                         </nav>
                     </div>
@@ -94,15 +105,26 @@ export const HeaderNavigation = () => {
 
                         <nav className="flex flex-col gap-4 mt-6">
                             {navLinks.map((item, key) => (
-                                <Link
-                                    key={key}
-                                    href={item.link}
-                                    onClick={() => setIsOpen(false)}
-                                    target={item.isExternal ? '_blank' : undefined}
-                                    className="text-white text-lg hover:underline"
-                                >
-                                    {item.label}
-                                </Link>
+                                item.isExternal ? (
+                                    <Link
+                                        key={key}
+                                        href={item.link}
+                                        onClick={() => setIsOpen(false)}
+                                        target="_blank"
+                                        className="text-white text-lg hover:underline"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ) : (
+                                    <SmoothScrollLink
+                                        key={key}
+                                        href={item.link}
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-white text-lg hover:underline"
+                                    >
+                                        {item.label}
+                                    </SmoothScrollLink>
+                                )
                             ))}
                         </nav>
 
