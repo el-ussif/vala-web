@@ -19,7 +19,7 @@ export const TallyButton = ({label}: TallyButtonProps) => {
             if (width < 640) {
                 setTallyWidth(0.9 * deviceWidth)
             } else if (width < 1024) {
-                setTallyWidth(700)
+                setTallyWidth(0.8 * deviceWidth)
             } else {
                 setTallyWidth(900)
             }
