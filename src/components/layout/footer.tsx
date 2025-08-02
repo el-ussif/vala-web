@@ -3,6 +3,7 @@ import Link from "next/link";
 import type {Variants} from 'framer-motion';
 import {motion} from "framer-motion";
 import {useScrollAnimation} from "@/hooks/useScrollAnimation";
+import {Env} from "@/constants/env";
 
 export const Footer = () => {
     const { ref: footerRef, isInView: footerInView } = useScrollAnimation({ threshold: 100 });
@@ -13,7 +14,8 @@ export const Footer = () => {
             items: [
                 {
                     title: "Linkedin",
-                    href: "#",
+                    href: Env.NEXT_PUBLIC_LINKEDIN_LINK??"#",
+                    type: "link"
                 },
             ],
         },
@@ -21,8 +23,9 @@ export const Footer = () => {
             title: "Contact us",
             items: [
                 {
-                    title: "contact@tryvala.com",
-                    href:  "/#",
+                    title: Env.NEXT_PUBLIC_CONTACT_EMAIL??"contact@tryvala.com",
+                    href:  Env.NEXT_PUBLIC_CONTACT_EMAIL??"contact@tryvala.com",
+                    type: "mail"//tel
                 },
             ],
         },
@@ -96,22 +99,32 @@ export const Footer = () => {
                             >
                                 <h3 className="text-sm font-bold mb-4">{item.title}</h3>
                                 <ul className="space-y-[8px]">
-                                    {item.items.map((li, liIndex) => (
-                                        <motion.li
-                                            key={li.title}
-                                            variants={itemVariants}
-                                            initial="hidden"
-                                            animate={footerInView ? "visible" : "hidden"}
-                                            transition={{ delay: (index * 0.1) + (liIndex * 0.05) }}
-                                        >
-                                            <Link
-                                                href={li.href}
-                                                className="hover:underline whitespace-nowrap text-sm"
+                                    {item.items.map((li, liIndex) => {
+                                        let finalHref = li.href;
+
+                                        if (li.type === "mail") {
+                                            finalHref = `mailto:${li.href}`;
+                                        } else if (li.type === "tel") {
+                                            finalHref = `tel:${li.href}`;
+                                        }
+
+                                        return (
+                                            <motion.li
+                                                key={li.title}
+                                                variants={itemVariants}
+                                                initial="hidden"
+                                                animate={footerInView ? "visible" : "hidden"}
+                                                transition={{ delay: index * 0.1 + liIndex * 0.05 }}
                                             >
-                                                {li.title}
-                                            </Link>
-                                        </motion.li>
-                                    ))}
+                                                <Link
+                                                    href={finalHref}
+                                                    className="hover:underline whitespace-nowrap text-sm"
+                                                >
+                                                    {li.title}
+                                                </Link>
+                                            </motion.li>
+                                        );
+                                    })}
                                 </ul>
                             </motion.div>
                         ))}

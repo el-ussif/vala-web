@@ -6,12 +6,17 @@ import {Menu, X} from 'lucide-react';
 import {AnimatePresence, motion, useScroll, useTransform} from 'framer-motion';
 import {Button} from '@/components/ui/button';
 import {CallActionButton} from '@/components/home/call-action-button';
+import {Env} from "@/constants/env";
 
 export const HeaderNavigation = () => {
     const navLinks = [
-        { label: 'Product', link: '#', isExternal: false },
-        { label: 'Features', link: '#', isExternal: false },
-        { label: 'Recruter', link: '#', isExternal: false },
+        { label: 'Product', link: '/#product', isExternal: false },
+        { label: 'Features', link: '/#features', isExternal: false },
+        {
+            label: 'Recruiter',
+            link: Env.NEXT_PUBLIC_RECRUITER_LINK??'https://masskodehq.notion.site/vala-ai-recruiter-program',
+            isExternal: true
+        },
     ];
 
     const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +37,14 @@ export const HeaderNavigation = () => {
                 }}
             >
                 <header className="flex justify-between items-center py-4 px-0 px-4 container mx-auto">
-                    <div className="flex items-center space-x-4 md:space-x-8">
+                    <div className="flex items-center space-x-8 md:space-x-16">
                         <Link href="/">
                             <h1 className="font-genos text-white text-3xl md:text-[48px] font-bold">
                                 Vala
                             </h1>
                         </Link>
 
-                        <nav className="hidden md:flex items-center mt-2 space-x-6">
+                        <nav className="hidden md:flex items-center mt-2 space-x-13">
                             {navLinks.map((item, key) => (
                                 <Link
                                     key={key}

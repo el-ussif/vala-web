@@ -1,6 +1,7 @@
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {Env} from "@/constants/env";
 
 interface CallActionButtonProps {
     label?: string
@@ -10,13 +11,13 @@ interface CallActionButtonProps {
 export const CallActionButton = ({label, link}: CallActionButtonProps) => {
 
     return (
-        <Link href={link??"#"}>
+        <Link href={link??(Env?.NEXT_PUBLIC_WAIT_LIST_LINK??"#")}>
             <motion.div
-                whileHover={{ 
+                whileHover={{
                     scale: 1.05,
                     transition: { duration: 0.2 }
                 }}
-                whileTap={{ 
+                whileTap={{
                     scale: 0.95,
                     transition: { duration: 0.1 }
                 }}
@@ -24,7 +25,7 @@ export const CallActionButton = ({label, link}: CallActionButtonProps) => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
             >
-                <Button className="font-semibold relative overflow-hidden group">
+                <Button className="font-semibold cursor-pointer relative overflow-hidden group">
                     <motion.span
                         className="relative z-10"
                         initial={{ opacity: 1 }}
@@ -32,7 +33,7 @@ export const CallActionButton = ({label, link}: CallActionButtonProps) => {
                     >
                         {label??"Join Waitlist"}
                     </motion.span>
-                    
+
                     {/* Animated background effect */}
                     <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/40"
@@ -40,7 +41,7 @@ export const CallActionButton = ({label, link}: CallActionButtonProps) => {
                         whileHover={{ x: "0%" }}
                         transition={{ duration: 0.3 }}
                     />
-                    
+
                     {/* Shimmer effect */}
                     <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"

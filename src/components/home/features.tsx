@@ -33,7 +33,7 @@ export const Features = () => {
 
     return (
         <>
-            <div className="w-full container mt-10 md:mt-32 mx-auto">
+            <div id="features" className="w-full container mt-10 md:mt-32 mx-auto">
                 <div className="max-w-screen-lg mx-auto px-2 md:px-20">
                     {/* Header Section */}
                     <motion.div

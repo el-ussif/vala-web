@@ -93,7 +93,7 @@ export const ExternalApps = () => {
                     {/* Apps Grid */}
                     <motion.div
                         ref={appsRef}
-                        className="grid-cols-3 md:grid-cols-4 grid gap-10 max-w-[415px] mx-auto border border-white/40 rounded-3xl px-7 py-9 mt-12"
+                        className="flex flex-wrap gap-8 justify-center max-w-[415px] mx-auto border border-white/40 rounded-3xl px-7 py-9 mt-12"
                         variants={containerVariants}
                         initial="hidden"
                         animate={appsInView ? "visible" : "hidden"}

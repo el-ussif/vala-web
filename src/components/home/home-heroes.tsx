@@ -91,8 +91,9 @@ export const HomeHeroes = () => {
                             initial={{ y: 30, opacity: 0, scale: 0.9 }}
                             animate={{ y: 0, opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: 1.4 }}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
+                            className="flex  items-center"
                         >
                             <CallActionButton/>
                         </motion.div>
