@@ -1,7 +1,6 @@
-import {Button} from "@/components/ui/button";
 import {CallActionButton} from "@/components/home/call-action-button";
-import { motion } from "framer-motion";
-import { useScrollAnimation, fadeInUp, scaleIn } from "@/hooks/useScrollAnimation";
+import {motion} from "framer-motion";
+import {useScrollAnimation} from "@/hooks/useScrollAnimation";
 
 export const UseCases = () => {
     const { ref: titleRef, isInView: titleInView } = useScrollAnimation({ threshold: 150 });

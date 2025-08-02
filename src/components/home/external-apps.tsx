@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useScrollAnimation, fadeInUp, scaleIn, staggerContainer } from "@/hooks/useScrollAnimation";
-import type { Variants } from 'framer-motion';
+import type {Variants} from 'framer-motion';
+import {motion} from "framer-motion";
+import {useScrollAnimation} from "@/hooks/useScrollAnimation";
 
 export const ExternalApps = () => {
     const { ref: headerRef, isInView: headerInView } = useScrollAnimation({ threshold: 150 });
@@ -69,7 +69,7 @@ export const ExternalApps = () => {
                         animate={headerInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                     >
-                        <motion.h2 
+                        <motion.h2
                             className="font-bold text-4xl md:text-6xl text-center mt-32"
                             initial={{ opacity: 0, y: 30 }}
                             animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -77,7 +77,7 @@ export const ExternalApps = () => {
                         >
                             {"Built to work with your everyday apps."}
                         </motion.h2>
-                        <motion.div 
+                        <motion.div
                             className="text-lg text-center mt-11 max-w-[570px] mx-auto"
                             initial={{ opacity: 0, y: 30 }}
                             animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -97,7 +97,7 @@ export const ExternalApps = () => {
                         variants={containerVariants}
                         initial="hidden"
                         animate={appsInView ? "visible" : "hidden"}
-                        whileHover={{ 
+                        whileHover={{
                             scale: 1.02,
                             borderColor: "rgba(255, 255, 255, 0.6)",
                             transition: { duration: 0.3 }
@@ -107,18 +107,18 @@ export const ExternalApps = () => {
                             <motion.div
                                 key={key}
                                 variants={appVariants}
-                                whileHover={{ 
+                                whileHover={{
                                     scale: 1.1,
                                     transition: { duration: 0.2 }
                                 }}
                                 whileTap={{ scale: 0.95 }}
                             >
                                 <Link href={item?.link}>
-                                    <motion.img 
-                                        src={item?.image} 
-                                        className="w-[64px] h-[64px]" 
+                                    <motion.img
+                                        src={item?.image}
+                                        className="w-[64px] h-[64px]"
                                         alt=""
-                                        whileHover={{ 
+                                        whileHover={{
                                             filter: "brightness(1.2)",
                                             transition: { duration: 0.2 }
                                         }}

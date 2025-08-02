@@ -1,8 +1,8 @@
 import PillBadge from "@/components/custom-ui/pill-badge";
 import {CallActionButton} from "@/components/home/call-action-button";
-import { motion } from "framer-motion";
-import { useScrollAnimation, fadeInUp, scaleIn, staggerContainer } from "@/hooks/useScrollAnimation";
-import type { Variants } from 'framer-motion';
+import type {Variants} from 'framer-motion';
+import {motion} from "framer-motion";
+import {useScrollAnimation} from "@/hooks/useScrollAnimation";
 
 export const MarketingBanner = () => {
     const { ref: imageRef, isInView: imageInView } = useScrollAnimation({ threshold: 200 });
@@ -39,16 +39,16 @@ export const MarketingBanner = () => {
         <div className="w-full flex items-center justify-center overflow-hidden">
             <div className="container w-full px-2 md:px-0">
                 {/* Image Section */}
-                <motion.div 
+                <motion.div
                     ref={imageRef}
                     className="mt-0 md:mt-[105px] px-4 md:px-0 w-full"
                     initial={{ opacity: 0, y: 60, scale: 0.95 }}
                     animate={imageInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                     transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                    <motion.img 
-                        className="w-full mx-auto md:w-[690px]" 
-                        src="/images/ai-agent.png" 
+                    <motion.img
+                        className="w-full mx-auto md:w-[690px]"
+                        src="/images/ai-agent.png"
                         alt="AI Agent"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.3 }}
@@ -63,13 +63,13 @@ export const MarketingBanner = () => {
                     initial="hidden"
                     animate={textInView ? "visible" : "hidden"}
                 >
-                    <motion.span 
+                    <motion.span
                         className="text-2xl"
                         variants={pillVariants}
                     >
                         Prepare for your
                     </motion.span>
-                    
+
                     <motion.div variants={pillVariants}>
                         <PillBadge
                             bgColor="bg-purple-1/[.36]"
@@ -91,14 +91,14 @@ export const MarketingBanner = () => {
                             label="PCS Moves"
                         />
                     </motion.div>
-                    
-                    <motion.span 
+
+                    <motion.span
                         className="text-2xl"
                         variants={pillVariants}
                     >
                         , manage your
                     </motion.span>
-                    
+
                     <motion.div variants={pillVariants}>
                         <PillBadge
                             bgColor="bg-green-1/[.36]"
@@ -121,14 +121,14 @@ export const MarketingBanner = () => {
                             label="Family Life"
                         />
                     </motion.div>
-                    
-                    <motion.span 
+
+                    <motion.span
                         className="text-2xl"
                         variants={pillVariants}
                     >
                         plan your
                     </motion.span>
-                    
+
                     <motion.div variants={pillVariants}>
                         <PillBadge
                             bgColor="bg-orange-1/[.36]"
@@ -151,14 +151,14 @@ export const MarketingBanner = () => {
                             label="Veteran Transition"
                         />
                     </motion.div>
-                    
-                    <motion.span 
+
+                    <motion.span
                         className="text-2xl"
                         variants={pillVariants}
                     >
                         and explore your path with
                     </motion.span>
-                    
+
                     <motion.div variants={pillVariants}>
                         <PillBadge
                             bgColor="bg-skyblue-1/[.36]"
@@ -181,8 +181,8 @@ export const MarketingBanner = () => {
                             label="Enlistment Explorer"
                         />
                     </motion.div>
-                    
-                    <motion.span 
+
+                    <motion.span
                         className="text-2xl"
                         variants={pillVariants}
                     >
@@ -191,7 +191,7 @@ export const MarketingBanner = () => {
                 </motion.div>
 
                 {/* CTA Button */}
-                <motion.div 
+                <motion.div
                     ref={buttonRef}
                     className="w-full justify-center my-20 flex"
                     initial={{ opacity: 0, y: 30, scale: 0.9 }}
